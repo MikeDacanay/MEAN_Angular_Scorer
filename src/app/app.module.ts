@@ -4,6 +4,7 @@ import { TaskService } from './task/task.service';
 import { AppComponent } from './app.component';
 import { ScoreKeeperComponent } from './score-keeper/score-keeper.component';
 import { FormcomponentComponent } from './formcomponent/formcomponent.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { FormcomponentComponent } from './formcomponent/formcomponent.component'
     FormcomponentComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]
