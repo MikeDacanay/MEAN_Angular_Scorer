@@ -3,13 +3,17 @@ import { Http } from '@angular/http'
 @Injectable()
 export class TaskService {
 	tasks = ['services works']
-  constructor() { }
+  constructor(private _http: Http) { }
 
-  retrieveTasks(){
-    return this.tasks;
-  }
- 
-  createTask(task){
-    this.tasks.push(task);
-  }
+  retrieveTasks(x, callback) {
+    this._http.get('https://api.github.com/users/'+x).subscribe(
+      (response) => {
+        this.tasks = response.json();
+        callback(this.tasks);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+	}
 }

@@ -1,5 +1,17 @@
-<p>
-	{{title}}
-</p>
 
-{{tasks | json}}
+<!-- {{tasks | json}} -->
+
+<form (submit)='onSubmit()'>
+	<p> Github Username:</p>
+	<input 
+	type='text'
+	name='username'
+	[(ngModel)]="user.username" 
+	>
+	<input type='submit' value='Calculate my github score'>
+</form>
+<h1 *ngIf="tasks.public_repos+tasks.followers">Your Score: {{tasks.public_repos+tasks.followers | json}}</h1>
+
+<h2 *ngIf="tasks.public_repos+tasks.followers < 20"> "Needs Work!"</h2>
+<h2 *ngIf="tasks.public_repos+tasks.followers > 20 && tasks.public_repos+tasks.followers < 100"> "Good JOb"</h2>
+<h2 *ngIf="tasks.public_repos+tasks.followers >100"> "VERY NICE!"</h2>

@@ -7,13 +7,26 @@ import { TaskService } from './../task/task.service'
 })
 export class FormcomponentComponent implements OnInit {
 	title= 'asfsd works!';
-
-	tasks = [];
+  user= {username:"",};
+	tasks = "";
   constructor(private _taskService: TaskService) { 
-  	this.tasks = this._taskService.retrieveTasks();
+    this.tasks;
   }
 
   ngOnInit() {
+  }
+
+  getTasks() {
+    this._taskService.retrieveTasks(this.user.username ,(tasks) => {
+      this.tasks = tasks;
+    });
+  }
+
+  onSubmit(){
+    if(this.user.username.length>0){
+      console.log(this.user.username);
+      this.getTasks()
+    }
   }
 
 }
